@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DataContracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +21,7 @@ namespace IHM
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView_destCSV.Items.Add("ui");
+            listView_destCSV.Items.Add("");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -64,26 +66,62 @@ namespace IHM
             }
 
 
-            var listeTest = new List<String>();
+            var listeTest = new List<DataContracts.Block>();
 
-            listeTest.Add("truc");
-            listeTest.Add("pas truc");
+            listeTest.Add(new DataContracts.Block() { Id = 1, Entry = "truc" });
+            listeTest.Add(new DataContracts.Block() { Id = 2, Entry = "pas truc" });
 
-            foreach (string el in listeTest)
+            foreach (DataContracts.Block el in listeTest)
             {
-                listView_srcCSV.Items.Add(el);
+                listView_srcCSV.Items.Add(el.Entry);
             }
         }
 
-        private void button_executer_Click(object sender, EventArgs e)
+        private void saveCSVDest_Click(object sender, EventArgs e)
         {
-            if(listView_srcCSV.SelectedItems.Count != 0)
+            var listBlocks = new List<Block>();
+            foreach(ListViewItem item in listView_destCSV.Items)
             {
-                //if(comboBox_functoid.SelectedItem)
+                listBlocks.Add(new Block()
+                {
+                    Id = item.Index,
+                    Entry = item.Text
+                });
             }
-            {
 
+            String dataNewCSV = "non";//ToMatrix(listBlocks);
+
+            if (saveCSVDialog.ShowDialog() == DialogResult.OK)
+            {
+                var path = saveCSVDialog.FileName;
+                StreamWriter writer = new StreamWriter(path);
+                writer.Write(dataNewCSV);
+                writer.Close();
             }
+        }
+
+        private void button_executer_Click_1(object sender, EventArgs e)
+        {
+            if (listView_srcCSV.SelectedItems.Count != 0)
+            {
+                if (comboBox_functoid.SelectedItem == "Concat")
+                {
+
+                }
+                if (comboBox_functoid.SelectedItem == "Split")
+                {
+
+                }
+                if (comboBox_functoid.SelectedItem == "Transferer")
+                {
+                    addItemSortie(listView_srcCSV.SelectedItems[0].Text);
+                }
+            }
+        }
+
+        private void addItemSortie(string title)
+        {
+            listView_destCSV.Items.Add(title);
         }
     }
 }
