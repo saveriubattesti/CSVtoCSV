@@ -41,6 +41,8 @@
             this.openCSVDialog = new System.Windows.Forms.OpenFileDialog();
             this.lienCSV = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.comboBox_functoid = new System.Windows.Forms.ComboBox();
+            this.button_executer = new System.Windows.Forms.Button();
             this.contextMenuCSVDest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -137,15 +139,40 @@
             this.lienCSV.AutoSize = true;
             this.lienCSV.Location = new System.Drawing.Point(93, 409);
             this.lienCSV.Name = "lienCSV";
-            this.lienCSV.Size = new System.Drawing.Size(16, 13);
+            this.lienCSV.Size = new System.Drawing.Size(0, 13);
             this.lienCSV.TabIndex = 6;
-            this.lienCSV.Text = "...";
+            // 
+            // comboBox_functoid
+            // 
+            this.comboBox_functoid.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBox_functoid.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox_functoid.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
+            this.comboBox_functoid.FormattingEnabled = true;
+            this.comboBox_functoid.Items.AddRange(new object[] {
+            "Concat",
+            "Split"});
+            this.comboBox_functoid.Location = new System.Drawing.Point(333, 130);
+            this.comboBox_functoid.Name = "comboBox_functoid";
+            this.comboBox_functoid.Size = new System.Drawing.Size(121, 59);
+            this.comboBox_functoid.TabIndex = 8;
+            // 
+            // button_executer
+            // 
+            this.button_executer.Location = new System.Drawing.Point(353, 295);
+            this.button_executer.Name = "button_executer";
+            this.button_executer.Size = new System.Drawing.Size(75, 23);
+            this.button_executer.TabIndex = 9;
+            this.button_executer.Text = "Executer";
+            this.button_executer.UseVisualStyleBackColor = true;
+            this.button_executer.Click += new System.EventHandler(this.button_executer_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 461);
+            this.Controls.Add(this.button_executer);
+            this.Controls.Add(this.comboBox_functoid);
             this.Controls.Add(this.lienCSV);
             this.Controls.Add(this.buttonImportCSV);
             this.Controls.Add(this.listView_destCSV);
@@ -174,6 +201,8 @@
         private System.Windows.Forms.OpenFileDialog openCSVDialog;
         private System.Windows.Forms.Label lienCSV;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ComboBox comboBox_functoid;
+        private System.Windows.Forms.Button button_executer;
     }
 }
 

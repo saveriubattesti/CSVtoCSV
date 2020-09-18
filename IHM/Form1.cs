@@ -75,7 +75,15 @@ namespace IHM
             }
         }
 
+        private void button_executer_Click(object sender, EventArgs e)
+        {
+            if(listView_srcCSV.SelectedItems.Count != 0)
+            {
+                //if(comboBox_functoid.SelectedItem)
+            }
+            {
 
-
+            }
+        }
     }
 }
