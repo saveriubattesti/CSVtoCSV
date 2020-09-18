@@ -19,7 +19,7 @@ namespace IHM
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView_destCSV.Items.Add("");
+            listView_destCSV.Items.Add("ui");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,11 +75,12 @@ namespace IHM
             }
         }
 
-        private void saveCSVDest_Click(object sender, EventArgs e)
+        private void button_executer_Click(object sender, EventArgs e)
         {
-            DialogResult result = saveCSVDialog.ShowDialog();
-
-            if(result == DialogResult.OK)
+            if(listView_srcCSV.SelectedItems.Count != 0)
+            {
+                //if(comboBox_functoid.SelectedItem)
+            }
             {
 
             }
