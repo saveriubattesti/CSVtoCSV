@@ -77,17 +77,6 @@ namespace IHM
             }
         }
 
-        private void button_executer_Click(object sender, EventArgs e)
-        {
-            if(listView_srcCSV.SelectedItems.Count != 0)
-            {
-                //if(comboBox_functoid.SelectedItem)
-            }
-            {
-
-            }
-        }
-
         private void saveCSVDest_Click(object sender, EventArgs e)
         {
             var listBlocks = new List<Block>();
@@ -108,6 +97,25 @@ namespace IHM
                 StreamWriter writer = new StreamWriter(path);
                 writer.Write(dataNewCSV);
                 writer.Close();
+            }
+        }
+
+        private void button_executer_Click_1(object sender, EventArgs e)
+        {
+            if (listView_srcCSV.SelectedItems.Count != 0)
+            {
+                if (comboBox_functoid.SelectedItem == "Concat")
+                {
+
+                }
+                if (comboBox_functoid.SelectedItem == "Split")
+                {
+
+                }
+                if (comboBox_functoid.SelectedItem == "Transferer")
+                {
+
+                }
             }
         }
     }
