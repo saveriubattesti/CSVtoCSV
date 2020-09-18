@@ -89,7 +89,7 @@ namespace IHM
                 });
             }
 
-            String[,] dataNewCSV = ToMatrix(listBlocks);
+            String dataNewCSV = "non";//ToMatrix(listBlocks);
 
             if (saveCSVDialog.ShowDialog() == DialogResult.OK)
             {
