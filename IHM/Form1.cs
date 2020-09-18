@@ -56,7 +56,6 @@ namespace IHM
 
         private void buttonImportCSV_Click(object sender, EventArgs e)
         {
-            openCSVDialog.InitialDirectory = ".\\Input";
             DialogResult result = openCSVDialog.ShowDialog();
 
             if (result == DialogResult.OK)

@@ -137,7 +137,6 @@
             this.openCSVDialog.DefaultExt = "csv";
             this.openCSVDialog.FileName = "CSV.csv";
             this.openCSVDialog.Filter = "*.csv|";
-            this.openCSVDialog.InitialDirectory = ".\\Input";
             // 
             // lienCSV
             // 
@@ -161,7 +160,6 @@
             // 
             this.saveCSVDialog.FileName = "newCSV.csv";
             this.saveCSVDialog.Filter = "*.csv|";
-            this.saveCSVDialog.InitialDirectory = ".\\Output";
             // 
             // comboBox_functoid
             // 
