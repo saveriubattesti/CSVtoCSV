@@ -19,17 +19,18 @@ namespace IHM
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView_destCSV.Items.Add("");
+            listView_destCSV.Items.Add("ui");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //listView_destCSV.SelectedItems
+            listView_destCSV.LabelEdit = true;
+            listView_destCSV.SelectedItems[0].BeginEdit();
         }
 
         private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            listView_destCSV.Items.RemoveAt(listView_destCSV.SelectedItems[0].Index);
         }
 
         private void contextMenuCSVDest_Opening(object sender, CancelEventArgs e)
