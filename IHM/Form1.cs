@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace IHM
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView_destCSV.Items.Add("ui");
+            listView_destCSV.Items.Add("");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +94,21 @@ namespace IHM
                 }
             }
            
+        }
+
+        private void saveCSVDest_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            DialogResult result = saveCSVDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                if ((myStream = saveCSVDialog.OpenFile()) != null)
+                {
+                    // Code to write the stream goes here.
+                    myStream.Close();
+                }
+            }
         }
     }
 }
