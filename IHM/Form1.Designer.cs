@@ -72,6 +72,7 @@
             // 
             this.listView_destCSV.ContextMenuStrip = this.contextMenuCSVDest;
             this.listView_destCSV.HideSelection = false;
+            this.listView_destCSV.LabelEdit = true;
             this.listView_destCSV.Location = new System.Drawing.Point(568, 38);
             this.listView_destCSV.Name = "listView_destCSV";
             this.listView_destCSV.Size = new System.Drawing.Size(220, 360);
