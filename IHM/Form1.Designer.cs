@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("test");
             this.listView_srcCSV = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,15 +45,27 @@
             this.saveCSVDest = new System.Windows.Forms.Button();
             this.saveCSVDialog = new System.Windows.Forms.SaveFileDialog();
             this.comboBox_functoid = new System.Windows.Forms.ComboBox();
+            this.splitBox = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button_executer = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.mergeBox = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.merge_button = new System.Windows.Forms.Button();
             this.contextMenuCSVDest.SuspendLayout();
+            this.splitBox.SuspendLayout();
+            this.mergeBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // listView_srcCSV
             // 
             this.listView_srcCSV.HideSelection = false;
+            this.listView_srcCSV.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
             this.listView_srcCSV.Location = new System.Drawing.Point(12, 38);
             this.listView_srcCSV.Name = "listView_srcCSV";
             this.listView_srcCSV.Size = new System.Drawing.Size(220, 360);
@@ -167,50 +180,127 @@
             this.comboBox_functoid.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
             this.comboBox_functoid.FormattingEnabled = true;
             this.comboBox_functoid.Items.AddRange(new object[] {
-            "Concat",
+            "Merge",
             "Split",
             "Transferer"});
             this.comboBox_functoid.Location = new System.Drawing.Point(340, 137);
             this.comboBox_functoid.Name = "comboBox_functoid";
             this.comboBox_functoid.Size = new System.Drawing.Size(121, 72);
             this.comboBox_functoid.TabIndex = 8;
+            this.comboBox_functoid.Visible = false;
+            this.comboBox_functoid.SelectedIndexChanged += new System.EventHandler(this.comboBox_functoid_SelectedIndexChanged);
+            // 
+            // splitBox
+            // 
+            this.splitBox.Controls.Add(this.button_executer);
+            this.splitBox.Controls.Add(this.textBox2);
+            this.splitBox.Controls.Add(this.label4);
+            this.splitBox.Location = new System.Drawing.Point(304, 215);
+            this.splitBox.Name = "splitBox";
+            this.splitBox.Size = new System.Drawing.Size(200, 100);
+            this.splitBox.TabIndex = 12;
+            this.splitBox.TabStop = false;
+            this.splitBox.Text = "Split";
+            this.splitBox.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(33, 34);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(108, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Caractère Séparateur";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(147, 31);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(28, 20);
+            this.textBox2.TabIndex = 14;
             // 
             // button_executer
             // 
-            this.button_executer.Location = new System.Drawing.Point(358, 274);
+            this.button_executer.Location = new System.Drawing.Point(66, 71);
             this.button_executer.Name = "button_executer";
             this.button_executer.Size = new System.Drawing.Size(75, 23);
-            this.button_executer.TabIndex = 9;
-            this.button_executer.Text = "Executer";
+            this.button_executer.TabIndex = 15;
+            this.button_executer.Text = "Exécuter";
             this.button_executer.UseVisualStyleBackColor = true;
-            this.button_executer.Click += new System.EventHandler(this.button_executer_Click_1);
             // 
-            // textBox1
+            // mergeBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(446, 232);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(24, 20);
-            this.textBox1.TabIndex = 10;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.mergeBox.Controls.Add(this.merge_button);
+            this.mergeBox.Controls.Add(this.textBox3);
+            this.mergeBox.Controls.Add(this.label6);
+            this.mergeBox.Controls.Add(this.label5);
+            this.mergeBox.Controls.Add(this.textBox1);
+            this.mergeBox.Controls.Add(this.label3);
+            this.mergeBox.Location = new System.Drawing.Point(304, 31);
+            this.mergeBox.Name = "mergeBox";
+            this.mergeBox.Size = new System.Drawing.Size(200, 100);
+            this.mergeBox.TabIndex = 13;
+            this.mergeBox.TabStop = false;
+            this.mergeBox.Text = "Merge";
+            this.mergeBox.Visible = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(332, 235);
+            this.label3.Location = new System.Drawing.Point(33, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(108, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Caractère Séparateur";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Nombre de cellules";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(147, 13);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(28, 20);
+            this.textBox1.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(33, 39);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(100, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Caractère de merge";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(22, 59);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(162, 13);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Sélectionnez les cellules sources";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(147, 36);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(28, 20);
+            this.textBox3.TabIndex = 4;
+            // 
+            // merge_button
+            // 
+            this.merge_button.Location = new System.Drawing.Point(66, 76);
+            this.merge_button.Name = "merge_button";
+            this.merge_button.Size = new System.Drawing.Size(75, 23);
+            this.merge_button.TabIndex = 5;
+            this.merge_button.Text = "Valider";
+            this.merge_button.UseVisualStyleBackColor = true;
+            this.merge_button.Click += new System.EventHandler(this.merge_button_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 461);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button_executer);
+            this.Controls.Add(this.mergeBox);
             this.Controls.Add(this.comboBox_functoid);
             this.Controls.Add(this.saveCSVDest);
             this.Controls.Add(this.lienCSV);
@@ -219,9 +309,14 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView_srcCSV);
+            this.Controls.Add(this.splitBox);
             this.Name = "Form1";
             this.Text = "CSVtoCSV";
             this.contextMenuCSVDest.ResumeLayout(false);
+            this.splitBox.ResumeLayout(false);
+            this.splitBox.PerformLayout();
+            this.mergeBox.ResumeLayout(false);
+            this.mergeBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,7 +339,15 @@
         private System.Windows.Forms.Button saveCSVDest;
         private System.Windows.Forms.SaveFileDialog saveCSVDialog;
         private System.Windows.Forms.ComboBox comboBox_functoid;
+        private System.Windows.Forms.GroupBox splitBox;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button_executer;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.GroupBox mergeBox;
+        private System.Windows.Forms.Button merge_button;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
     }

@@ -49,11 +49,6 @@ namespace IHM
             }
         }
 
-        private void listView_srcCSV_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void buttonImportCSV_Click(object sender, EventArgs e)
         {
             string user = Environment.UserName;
@@ -107,21 +102,7 @@ namespace IHM
 
         private void button_executer_Click_1(object sender, EventArgs e)
         {
-            if (listView_srcCSV.SelectedItems.Count != 0)
-            {
-                if (comboBox_functoid.SelectedItem == "Concat")
-                {
-
-                }
-                if (comboBox_functoid.SelectedItem == "Split")
-                {
-
-                }
-                if (comboBox_functoid.SelectedItem == "Transferer")
-                {
-                    addItemSortie(listView_srcCSV.SelectedItems[0].Text);
-                }
-            }
+            
         }
 
         private void addItemSortie(string title)
@@ -134,9 +115,35 @@ namespace IHM
 
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void comboBox_functoid_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox_functoid.SelectedItem == "Merge")
+            {
+                mergeBox.Visible = true;
+                splitBox.Visible = false;
+            }
+            if (comboBox_functoid.SelectedItem == "Split")
+            {
+                mergeBox.Visible = false;
+                splitBox.Visible = true;
+            }
+            if (comboBox_functoid.SelectedItem == "Transferer")
+            {
+                mergeBox.Visible = false;
+                splitBox.Visible = false;
+
+                addItemSortie(listView_srcCSV.SelectedItems[0].Text);
+            }
+        }
+
+        private void merge_button_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void listView_srcCSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            comboBox_functoid.Visible = true;
         }
     }
 }
