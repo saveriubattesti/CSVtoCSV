@@ -79,16 +79,24 @@ namespace IHM
 
         private void saveCSVDest_Click(object sender, EventArgs e)
         {
-            Stream myStream;
-            DialogResult result = saveCSVDialog.ShowDialog();
-
-            if (result == DialogResult.OK)
+            var listBlocks = new List<Block>();
+            foreach(ListViewItem item in listView_destCSV.Items)
             {
-                if ((myStream = saveCSVDialog.OpenFile()) != null)
+                listBlocks.Add(new Block()
                 {
-                    // Code to write the stream goes here.
-                    myStream.Close();
-                }
+                    Id = item.Index,
+                    Entry = item.Text
+                });
+            }
+
+            String[,] dataNewCSV = ToMatrix(listBlocks);
+
+            if (saveCSVDialog.ShowDialog() == DialogResult.OK)
+            {
+                var path = saveCSVDialog.FileName;
+                StreamWriter writer = new StreamWriter(path);
+                writer.Write(dataNewCSV);
+                writer.Close();
             }
         }
 
