@@ -79,11 +79,20 @@ namespace IHM
         {
             if(listView_srcCSV.SelectedItems.Count != 0)
             {
-                //if(comboBox_functoid.SelectedItem)
-            }
-            {
+                if(comboBox_functoid.SelectedItem == "Concat")
+                {
 
+                }
+                if (comboBox_functoid.SelectedItem == "Split")
+                {
+
+                }
+                if (comboBox_functoid.SelectedItem == "Transferer")
+                {
+
+                }
             }
+           
         }
     }
 }

@@ -150,10 +150,11 @@
             this.comboBox_functoid.FormattingEnabled = true;
             this.comboBox_functoid.Items.AddRange(new object[] {
             "Concat",
-            "Split"});
+            "Split",
+            "Transferer"});
             this.comboBox_functoid.Location = new System.Drawing.Point(333, 130);
             this.comboBox_functoid.Name = "comboBox_functoid";
-            this.comboBox_functoid.Size = new System.Drawing.Size(121, 59);
+            this.comboBox_functoid.Size = new System.Drawing.Size(121, 72);
             this.comboBox_functoid.TabIndex = 8;
             // 
             // button_executer
