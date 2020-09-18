@@ -75,7 +75,14 @@ namespace IHM
             }
         }
 
+        private void saveCSVDest_Click(object sender, EventArgs e)
+        {
+            DialogResult result = saveCSVDialog.ShowDialog();
 
+            if(result == DialogResult.OK)
+            {
 
+            }
+        }
     }
 }

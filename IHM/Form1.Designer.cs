@@ -41,6 +41,8 @@
             this.openCSVDialog = new System.Windows.Forms.OpenFileDialog();
             this.lienCSV = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.saveCSVDest = new System.Windows.Forms.Button();
+            this.saveCSVDialog = new System.Windows.Forms.SaveFileDialog();
             this.contextMenuCSVDest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,8 +131,9 @@
             // openCSVDialog
             // 
             this.openCSVDialog.DefaultExt = "csv";
-            this.openCSVDialog.FileName = "openFileDialog1";
+            this.openCSVDialog.FileName = "csv";
             this.openCSVDialog.Filter = "*.csv|";
+            this.openCSVDialog.InitialDirectory = "C:\\Users\\hemjy\\source\\repos\\CSVtoCSV\\IHM\\Input";
             // 
             // lienCSV
             // 
@@ -140,11 +143,28 @@
             this.lienCSV.Size = new System.Drawing.Size(0, 13);
             this.lienCSV.TabIndex = 6;
             // 
+            // saveCSVDest
+            // 
+            this.saveCSVDest.Location = new System.Drawing.Point(713, 404);
+            this.saveCSVDest.Name = "saveCSVDest";
+            this.saveCSVDest.Size = new System.Drawing.Size(75, 23);
+            this.saveCSVDest.TabIndex = 7;
+            this.saveCSVDest.Text = "Enregistrer";
+            this.saveCSVDest.UseVisualStyleBackColor = true;
+            this.saveCSVDest.Click += new System.EventHandler(this.saveCSVDest_Click);
+            // 
+            // saveCSVDialog
+            // 
+            this.saveCSVDialog.FileName = "newCSV.csv";
+            this.saveCSVDialog.Filter = "*csv|";
+            this.saveCSVDialog.InitialDirectory = "C:\\Users\\hemjy\\source\\repos\\CSVtoCSV\\IHM\\Output";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 461);
+            this.Controls.Add(this.saveCSVDest);
             this.Controls.Add(this.lienCSV);
             this.Controls.Add(this.buttonImportCSV);
             this.Controls.Add(this.listView_destCSV);
@@ -173,6 +193,8 @@
         private System.Windows.Forms.OpenFileDialog openCSVDialog;
         private System.Windows.Forms.Label lienCSV;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.Button saveCSVDest;
+        private System.Windows.Forms.SaveFileDialog saveCSVDialog;
     }
 }
 
