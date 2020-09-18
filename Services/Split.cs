@@ -9,7 +9,6 @@ namespace Services
 {
     public class Split : Functoid
     {
-
         public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks)
         {
             throw new NotImplementedException();

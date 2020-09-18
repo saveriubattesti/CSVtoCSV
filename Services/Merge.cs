@@ -11,7 +11,7 @@ namespace Services
     {
         public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks)
         {
-            if (nbOfOutputBlocks <= 1)
+            if (nbOfOutputBlocks != 1)
             {
                 return entryBlocks;
             }
