@@ -37,6 +37,10 @@
             this.ajouterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modifierToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonImportCSV = new System.Windows.Forms.Button();
+            this.openCSVDialog = new System.Windows.Forms.OpenFileDialog();
+            this.buttonUploadCSV = new System.Windows.Forms.Button();
+            this.lienCSV = new System.Windows.Forms.Label();
             this.contextMenuCSVDest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,6 +53,7 @@
             this.listView_srcCSV.TabIndex = 0;
             this.listView_srcCSV.UseCompatibleStateImageBehavior = false;
             this.listView_srcCSV.View = System.Windows.Forms.View.List;
+            this.listView_srcCSV.SelectedIndexChanged += new System.EventHandler(this.listView_srcCSV_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -111,11 +116,49 @@
             this.supprimerToolStripMenuItem.Text = "Supprimer...";
             this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
+            // buttonImportCSV
+            // 
+            this.buttonImportCSV.Location = new System.Drawing.Point(12, 404);
+            this.buttonImportCSV.Name = "buttonImportCSV";
+            this.buttonImportCSV.Size = new System.Drawing.Size(75, 23);
+            this.buttonImportCSV.TabIndex = 4;
+            this.buttonImportCSV.Text = "Parcourir";
+            this.buttonImportCSV.UseVisualStyleBackColor = true;
+            this.buttonImportCSV.Click += new System.EventHandler(this.buttonImportCSV_Click);
+            // 
+            // openCSVDialog
+            // 
+            this.openCSVDialog.DefaultExt = "csv";
+            this.openCSVDialog.FileName = "openFileDialog1";
+            this.openCSVDialog.Filter = "*.csv|";
+            // 
+            // buttonUploadCSV
+            // 
+            this.buttonUploadCSV.Location = new System.Drawing.Point(12, 433);
+            this.buttonUploadCSV.Name = "buttonUploadCSV";
+            this.buttonUploadCSV.Size = new System.Drawing.Size(75, 23);
+            this.buttonUploadCSV.TabIndex = 5;
+            this.buttonUploadCSV.Text = "Enregistrer";
+            this.buttonUploadCSV.UseVisualStyleBackColor = true;
+            this.buttonUploadCSV.Click += new System.EventHandler(this.buttonUploadCSV_Click);
+            // 
+            // lienCSV
+            // 
+            this.lienCSV.AutoSize = true;
+            this.lienCSV.Location = new System.Drawing.Point(93, 409);
+            this.lienCSV.Name = "lienCSV";
+            this.lienCSV.Size = new System.Drawing.Size(16, 13);
+            this.lienCSV.TabIndex = 6;
+            this.lienCSV.Text = "...";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lienCSV);
+            this.Controls.Add(this.buttonUploadCSV);
+            this.Controls.Add(this.buttonImportCSV);
             this.Controls.Add(this.listView_destCSV);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -138,6 +181,10 @@
         private System.Windows.Forms.ToolStripMenuItem ajouterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modifierToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem supprimerToolStripMenuItem;
+        private System.Windows.Forms.Button buttonImportCSV;
+        private System.Windows.Forms.OpenFileDialog openCSVDialog;
+        private System.Windows.Forms.Button buttonUploadCSV;
+        private System.Windows.Forms.Label lienCSV;
     }
 }
 

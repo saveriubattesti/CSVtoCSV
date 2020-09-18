@@ -46,5 +46,35 @@ namespace IHM
                 contextMenuCSVDest.Items["supprimerToolStripMenuItem"].Enabled = true;
             }
         }
+
+        private void listView_srcCSV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonImportCSV_Click(object sender, EventArgs e)
+        {
+            DialogResult result = openCSVDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                string CSVfile = openCSVDialog.FileName;
+
+                lienCSV.Text = CSVfile;
+            }
+        }
+
+        private void buttonUploadCSV_Click(object sender, EventArgs e)
+        {
+            var listeTest = new List<String>();
+
+            listeTest.Add("truc");
+            listeTest.Add("pas truc");
+
+            foreach (string el in listeTest)
+            {
+                listView_srcCSV.Items.Add(el);
+            }
+        }
     }
 }
