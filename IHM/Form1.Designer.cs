@@ -137,6 +137,7 @@
             this.openCSVDialog.DefaultExt = "csv";
             this.openCSVDialog.FileName = "CSV.csv";
             this.openCSVDialog.Filter = "*.csv|";
+            this.openCSVDialog.InitialDirectory = "C:\\Users\\%username%\\Source\\Repos\\CSVtoCSV\\IHM\\Output";
             // 
             // lienCSV
             // 

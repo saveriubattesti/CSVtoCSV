@@ -56,6 +56,8 @@ namespace IHM
 
         private void buttonImportCSV_Click(object sender, EventArgs e)
         {
+            string user = Environment.UserName;
+            openCSVDialog.InitialDirectory = "C:\\Users\\" + user + "\\Source\\Repos\\CSVtoCSV\\IHM\\Input";
             DialogResult result = openCSVDialog.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -79,6 +81,9 @@ namespace IHM
 
         private void saveCSVDest_Click(object sender, EventArgs e)
         {
+            string user = Environment.UserName;
+            saveCSVDialog.InitialDirectory = "C:\\Users\\" + user + "\\Source\\Repos\\CSVtoCSV\\IHM\\Output";
+
             var listBlocks = new List<Block>();
             foreach(ListViewItem item in listView_destCSV.Items)
             {
