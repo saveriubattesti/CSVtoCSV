@@ -10,7 +10,7 @@ namespace Services
     {
         public override void CreateBlock()
         {
-            throw new NotImplementedException();
+            var test = false;
         }
     }
 }
