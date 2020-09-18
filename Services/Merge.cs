@@ -9,7 +9,7 @@ namespace Services
 {
     public class Merge : Functoid
     {
-        public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks)
+        public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks = 1)
         {
             if (nbOfOutputBlocks != 1)
             {
@@ -21,6 +21,11 @@ namespace Services
 
             foreach (Block entryBlock in entryBlocks)
             {
+                var mergeChar = parameters["mergeChar"];
+                if (!String.IsNullOrEmpty(mergeChar))
+                {
+                    mergedString += mergeChar;
+                }
                 mergedString += entryBlock.Entry;
             }
 
