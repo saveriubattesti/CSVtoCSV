@@ -1,4 +1,5 @@
 ﻿using DataContracts;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -60,18 +61,19 @@ namespace IHM
                 string CSVfile = openCSVDialog.FileName;
 
                 lienCSV.Text = CSVfile;
+
+                var source = new Source();
+
+                var listeEntry = source.getData(CSVfile);
+
+                foreach (DataContracts.Block el in listeEntry)
+                {
+                    listView_srcCSV.Items.Add(el.Entry);
+                }
+
             }
 
-
-            var listeTest = new List<DataContracts.Block>();
-
-            listeTest.Add(new DataContracts.Block() { Id = 1, Entry = "truc" });
-            listeTest.Add(new DataContracts.Block() { Id = 2, Entry = "pas truc" });
-
-            foreach (DataContracts.Block el in listeTest)
-            {
-                listView_srcCSV.Items.Add(el.Entry);
-            }
+            
         }
 
         private void saveCSVDest_Click(object sender, EventArgs e)
