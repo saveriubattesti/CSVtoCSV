@@ -1,7 +1,4 @@
-﻿using CsvHelper;
-using CsvHelper.Configuration;
-using CsvHelper.Configuration.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
@@ -10,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TestProjet2
+namespace Services
 {
     class Destination
     {
-        
-        public static void Submit(String PathTofile, String fileName, List<Block> blocks)
+        /*
+        public static void Submit(String PathTofile, String fileName, List<DataContracts.Block> blocks)
         {
             using (var writer = new StreamWriter(PathTofile + fileName + ".csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -23,15 +20,9 @@ namespace TestProjet2
                 csv.WriteRecords(blocks);
             }
         }
+        */
 
-
-        public static void AddEntry(List<Block> blocks, String entryName)
-        {
-
-        }
-
-
-        public static String ToMatrix(List<Block> blocks)
+        public static String ToMatrix(List<DataContracts.Block> blocks)
         {
             //var matrix = new String[10,10];
 
@@ -62,12 +53,5 @@ namespace TestProjet2
             return matrix;
         }
 
-    }
-
-    class Block
-    {
-
-        public Int32 Id { get; set; }
-        public String Entry { get; set; }
     }
 }
