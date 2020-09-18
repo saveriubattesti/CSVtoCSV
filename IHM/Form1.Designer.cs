@@ -39,8 +39,8 @@
             this.supprimerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonImportCSV = new System.Windows.Forms.Button();
             this.openCSVDialog = new System.Windows.Forms.OpenFileDialog();
-            this.buttonUploadCSV = new System.Windows.Forms.Button();
             this.lienCSV = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.contextMenuCSVDest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,16 +132,6 @@
             this.openCSVDialog.FileName = "openFileDialog1";
             this.openCSVDialog.Filter = "*.csv|";
             // 
-            // buttonUploadCSV
-            // 
-            this.buttonUploadCSV.Location = new System.Drawing.Point(12, 433);
-            this.buttonUploadCSV.Name = "buttonUploadCSV";
-            this.buttonUploadCSV.Size = new System.Drawing.Size(75, 23);
-            this.buttonUploadCSV.TabIndex = 5;
-            this.buttonUploadCSV.Text = "Enregistrer";
-            this.buttonUploadCSV.UseVisualStyleBackColor = true;
-            this.buttonUploadCSV.Click += new System.EventHandler(this.buttonUploadCSV_Click);
-            // 
             // lienCSV
             // 
             this.lienCSV.AutoSize = true;
@@ -154,9 +144,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 461);
             this.Controls.Add(this.lienCSV);
-            this.Controls.Add(this.buttonUploadCSV);
             this.Controls.Add(this.buttonImportCSV);
             this.Controls.Add(this.listView_destCSV);
             this.Controls.Add(this.label2);
@@ -182,8 +171,8 @@
         private System.Windows.Forms.ToolStripMenuItem supprimerToolStripMenuItem;
         private System.Windows.Forms.Button buttonImportCSV;
         private System.Windows.Forms.OpenFileDialog openCSVDialog;
-        private System.Windows.Forms.Button buttonUploadCSV;
         private System.Windows.Forms.Label lienCSV;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

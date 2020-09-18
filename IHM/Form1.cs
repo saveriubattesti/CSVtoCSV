@@ -62,10 +62,8 @@ namespace IHM
 
                 lienCSV.Text = CSVfile;
             }
-        }
 
-        private void buttonUploadCSV_Click(object sender, EventArgs e)
-        {
+
             var listeTest = new List<String>();
 
             listeTest.Add("truc");
@@ -76,5 +74,8 @@ namespace IHM
                 listView_srcCSV.Items.Add(el);
             }
         }
+
+
+
     }
 }
