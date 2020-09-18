@@ -45,6 +45,8 @@
             this.saveCSVDialog = new System.Windows.Forms.SaveFileDialog();
             this.comboBox_functoid = new System.Windows.Forms.ComboBox();
             this.button_executer = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.contextMenuCSVDest.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -169,14 +171,14 @@
             "Concat",
             "Split",
             "Transferer"});
-            this.comboBox_functoid.Location = new System.Drawing.Point(338, 158);
+            this.comboBox_functoid.Location = new System.Drawing.Point(340, 137);
             this.comboBox_functoid.Name = "comboBox_functoid";
             this.comboBox_functoid.Size = new System.Drawing.Size(121, 72);
             this.comboBox_functoid.TabIndex = 8;
             // 
             // button_executer
             // 
-            this.button_executer.Location = new System.Drawing.Point(359, 261);
+            this.button_executer.Location = new System.Drawing.Point(358, 274);
             this.button_executer.Name = "button_executer";
             this.button_executer.Size = new System.Drawing.Size(75, 23);
             this.button_executer.TabIndex = 9;
@@ -184,11 +186,31 @@
             this.button_executer.UseVisualStyleBackColor = true;
             this.button_executer.Click += new System.EventHandler(this.button_executer_Click_1);
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(446, 232);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(24, 20);
+            this.textBox1.TabIndex = 10;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(332, 235);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(108, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Caractère Séparateur";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 461);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_executer);
             this.Controls.Add(this.comboBox_functoid);
             this.Controls.Add(this.saveCSVDest);
@@ -224,6 +246,8 @@
         private System.Windows.Forms.SaveFileDialog saveCSVDialog;
         private System.Windows.Forms.ComboBox comboBox_functoid;
         private System.Windows.Forms.Button button_executer;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
