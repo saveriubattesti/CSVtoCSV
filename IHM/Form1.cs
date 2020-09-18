@@ -52,6 +52,7 @@ namespace IHM
 
         private void buttonImportCSV_Click(object sender, EventArgs e)
         {
+            listView_srcCSV.Clear();
             string user = Environment.UserName;
             openCSVDialog.InitialDirectory = "C:\\Users\\" + user + "\\Source\\Repos\\CSVtoCSV\\IHM\\Input";
             DialogResult result = openCSVDialog.ShowDialog();
@@ -90,8 +91,8 @@ namespace IHM
                     Entry = item.Text
                 });
             }
-
-            String dataNewCSV = "non";//ToMatrix(listBlocks);
+            
+            String dataNewCSV = Destination.ToMatrix(listBlocks);
 
             if (saveCSVDialog.ShowDialog() == DialogResult.OK)
             {
@@ -102,19 +103,9 @@ namespace IHM
             }
         }
 
-        private void button_executer_Click_1(object sender, EventArgs e)
-        {
-            
-        }
-
         private void addItemSortie(string title)
         {
             listView_destCSV.Items.Add(title);
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void comboBox_functoid_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,12 +131,70 @@ namespace IHM
 
         private void merge_button_Click(object sender, EventArgs e)
         {
+            var merge = new Merge();
+
+            List<Block> listeEntre = new List<Block>();
+
+            var car = carMerge.Text;
+
+            foreach (ListViewItem item in listView_srcCSV.SelectedItems)
+            {
+                listeEntre.Add(new Block()
+                {
+                    Id = 1,
+                    Entry = item.Text
+                });
+
+
+            }
+
+            var dic = new Dictionary<string, string>();
+
+            dic["mergeChar"] = car;
+
+            var sortie = merge.CreateBlock(listeEntre, dic);
+
+            addItemSortie(sortie[0].Entry);
 
         }
 
-        private void listView_srcCSV_SelectedIndexChanged(object sender, EventArgs e)
+            private void listView_srcCSV_SelectedIndexChanged(object sender, EventArgs e)
         {
             comboBox_functoid.Visible = true;
+        }
+
+        private void button_executer_Click(object sender, EventArgs e)
+        {
+            var split = new Split();
+
+            List<Block> listeEntre = new List<Block>();
+
+            var car = carSep.Text;
+            int nbSort;
+            Int32.TryParse(nbSortie.Text, out nbSort);
+
+            foreach (ListViewItem item in listView_srcCSV.SelectedItems)
+            {
+                listeEntre.Add(new Block()
+                {
+                    Id = 1,
+                    Entry = item.Text
+                });
+
+
+            }
+
+            var dic = new Dictionary<string, string>();
+
+            dic["splitChar"] = car;
+
+            var sortie = split.CreateBlock(listeEntre, dic, nbSort);
+
+            foreach (Block res in sortie)
+            {
+                addItemSortie(res.Entry);
+                Console.WriteLine(res.Entry);
+            }
         }
     }
 }

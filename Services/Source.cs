@@ -17,6 +17,7 @@ namespace Services
             using (var reader = new StreamReader(link))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
+                csv.Configuration.Delimiter = ";";
                 csv.Read();
                 csv.ReadHeader();
                 string[] headerRox = csv.Context.HeaderRecord;

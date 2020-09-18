@@ -19,14 +19,16 @@ namespace Services
             String mergedString = "";
             Int32 finalId = entryBlocks.FirstOrDefault().Id;
 
+
             foreach (Block entryBlock in entryBlocks)
             {
                 var mergeChar = parameters["mergeChar"];
+
+                mergedString += entryBlock.Entry;
                 if (!String.IsNullOrEmpty(mergeChar))
                 {
                     mergedString += mergeChar;
                 }
-                mergedString += entryBlock.Entry;
             }
 
             List<Block> outputBlocks = new List<Block>();
