@@ -14,10 +14,10 @@ namespace TestProjet2
 {
     class Destination
     {
-       
+        
         public static void Submit(String PathTofile, String fileName, List<Block> blocks)
         {
-            using (var writer = new StreamWriter(PathTofile+fileName+".csv"))
+            using (var writer = new StreamWriter(PathTofile + fileName + ".csv"))
             using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
             {
                 csv.WriteRecords(blocks);
@@ -33,24 +33,27 @@ namespace TestProjet2
 
         public static String ToMatrix(List<Block> blocks)
         {
+            //var matrix = new String[10,10];
 
             var matrix = "";
             var old = 1;
 
-            foreach(Block b in blocks)
+            foreach (Block b in blocks)
             {
-                if (b.Id == 1) { matrix += "\r\n"; }
-
-
-                for (int i = old; i< b.Id;i++)
-                {
-                    if (b.Id - i != old && b.Id != 1) { matrix += ";"; }
-                }
                 
+                if (b.Id == 1 && matrix !="") { matrix += "\r\n"; }
+
+
+                for (int i = old; i < b.Id; i++)
+                {
+                    //if (b.Id - i != old && b.Id != 1) { matrix += ";"; }
+                    if (b.Id - i != 1 && b.Id != 1) { matrix += ";"; }
+                }
+
 
                 matrix += b.Entry + ";";
-                
-                
+
+
 
                 old = b.Id;
             }
@@ -58,9 +61,10 @@ namespace TestProjet2
 
             return matrix;
         }
+
     }
 
-    class Block 
+    class Block
     {
 
         public Int32 Id { get; set; }
