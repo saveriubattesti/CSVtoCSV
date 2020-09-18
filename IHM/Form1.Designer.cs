@@ -147,9 +147,8 @@
             this.lienCSV.AutoSize = true;
             this.lienCSV.Location = new System.Drawing.Point(93, 409);
             this.lienCSV.Name = "lienCSV";
-            this.lienCSV.Size = new System.Drawing.Size(16, 13);
+            this.lienCSV.Size = new System.Drawing.Size(0, 13);
             this.lienCSV.TabIndex = 6;
-            this.lienCSV.Text = "...";
             // 
             // Form1
             // 
