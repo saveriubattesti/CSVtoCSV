@@ -66,14 +66,14 @@ namespace IHM
             }
 
 
-            var listeTest = new List<String>();
+            var listeTest = new List<DataContracts.Block>();
 
-            listeTest.Add("truc");
-            listeTest.Add("pas truc");
+            listeTest.Add(new DataContracts.Block() { Id = 1, Entry = "truc" });
+            listeTest.Add(new DataContracts.Block() { Id = 2, Entry = "pas truc" });
 
-            foreach (string el in listeTest)
+            foreach (DataContracts.Block el in listeTest)
             {
-                listView_srcCSV.Items.Add(el);
+                listView_srcCSV.Items.Add(el.Entry);
             }
         }
 
@@ -89,7 +89,7 @@ namespace IHM
                 });
             }
 
-            String dataNewCSV = "oui;";//ToMatrix(listBlocks);
+            String dataNewCSV = "non";//ToMatrix(listBlocks);
 
             if (saveCSVDialog.ShowDialog() == DialogResult.OK)
             {
@@ -114,9 +114,14 @@ namespace IHM
                 }
                 if (comboBox_functoid.SelectedItem == "Transferer")
                 {
-
+                    addItemSortie(listView_srcCSV.SelectedItems[0].Text);
                 }
             }
+        }
+
+        private void addItemSortie(string title)
+        {
+            listView_destCSV.Items.Add(title);
         }
     }
 }
