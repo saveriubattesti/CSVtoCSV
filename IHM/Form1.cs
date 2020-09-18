@@ -20,7 +20,7 @@ namespace IHM
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView_destCSV.Items.Add("ui");
+            listView_destCSV.Items.Add("");
         }
 
         private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
