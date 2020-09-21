@@ -35,9 +35,9 @@ namespace Services
             }
         }
 
-        public List<Block> GetAllData()
+        public List<Block> GetAllData(String link)
         {
-            using (var reader = new StreamReader("D:/AAA-M2/Projet Apocalypse/ConsoleApp1/test.csv"))
+            using (var reader = new StreamReader(link))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 csv.Configuration.Delimiter = ",";
