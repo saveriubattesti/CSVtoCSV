@@ -29,10 +29,33 @@ namespace Services
                     lBlock.Add(new Block { Id = counterId, Entry = title });
                     counterId++;
                 }
+
+
                 return lBlock;
             }
-                    
+        }
 
+        public List<Block> GetAllData()
+        {
+            using (var reader = new StreamReader("D:/AAA-M2/Projet Apocalypse/ConsoleApp1/test.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                csv.Configuration.Delimiter = ",";
+                csv.Read();
+                csv.ReadHeader();
+                var records = csv.GetRecords<dynamic>();
+                List<Block> cellData = new List<Block>();
+                foreach (var line in records)
+                {
+                    var colCount = 1;
+                    foreach (var cell in line)
+                    {
+                        cellData.Add(new Block { Id = colCount, Entry = cell.Value });
+                        colCount++;
+                    }
+                }
+                return cellData;
+            }
         }
     }
 }
