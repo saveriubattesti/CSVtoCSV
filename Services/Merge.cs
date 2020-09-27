@@ -20,15 +20,14 @@ namespace Services
             Int32 finalId = entryBlocks.FirstOrDefault().Id;
 
 
-            foreach (Block entryBlock in entryBlocks)
+            for (int i = 0; i < entryBlocks.Count(); i++)
             {
                 var mergeChar = parameters["mergeChar"];
-
-                mergedString += entryBlock.Entry;
-                if (!String.IsNullOrEmpty(mergeChar))
+                if (i > 0)
                 {
                     mergedString += mergeChar;
                 }
+                mergedString += entryBlocks[i].Entry;
             }
 
             List<Block> outputBlocks = new List<Block>();
