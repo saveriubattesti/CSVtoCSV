@@ -11,7 +11,7 @@ namespace Services
 {
     class Destination
     {
-        /*
+        /* // obsolète 
         public static void Submit(String PathTofile, String fileName, List<DataContracts.Block> blocks)
         {
             using (var writer = new StreamWriter(PathTofile + fileName + ".csv"))
@@ -22,7 +22,7 @@ namespace Services
         }
         */
 
-        public static String ToMatrix(List<DataContracts.Block> blocks)
+        public static String convertBlocks(List<DataContracts.Block> blocks)
         {
             //var matrix = new String[10,10];
 
