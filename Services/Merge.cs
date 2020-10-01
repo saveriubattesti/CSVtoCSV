@@ -9,58 +9,28 @@ namespace Services
 {
     public class Merge : Functoid
     {
-        public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks = 1)
+
+        public override List<List<Block>> CreateBlock(List<List<Block>> columns, List<int> idColumnsShouldBeChange, char separator)
         {
-            if (nbOfOutputBlocks != 1)
-            {
-                return entryBlocks;
-            }
-
-            String mergedString = "";
-            Int32 finalId = entryBlocks.FirstOrDefault().Id;
-
-
-            for (int i = 0; i < entryBlocks.Count(); i++)
-            {
-                var mergeChar = parameters["mergeChar"];
-                if (i > 0)
-                {
-                    mergedString += mergeChar;
-                }
-                mergedString += entryBlocks[i].Entry;
-            }
-
-            List<Block> outputBlocks = new List<Block>();
-            outputBlocks.Add(
-                 new Block() { Id = finalId, Entry = mergedString }
-            );
-            
-            return outputBlocks;
-        }
-
-        public static List<Block> MergeBis(List<List<Block>> colums, Int32[] idColumsShouldBeMerged, char separator)
-        {
-            List<Block> columnsMerged = new List<Block>();
+            List<List<Block>> columnsMerged = new List<List<Block>>();
             List<List<Block>> allColums = new List<List<Block>>();
-            foreach (Int32 element in idColumsShouldBeMerged)
+            foreach (Int32 element in idColumnsShouldBeChange)
             {
-                allColums.Add(colums[element]);
+                allColums.Add(columns[element]);
             }
-            var nbColumns = idColumsShouldBeMerged.Length;
-            var idColumn = idColumsShouldBeMerged[0];
+            var nbColumns = idColumnsShouldBeChange.Count();
+            var idColumn = idColumnsShouldBeChange[0];
             var n = 0;
-            
-            foreach(Block row in allColums[0])
+            columnsMerged.Add(new List<Block>());
+            foreach (Block row in allColums[0])
             {
-                for(int i = 1; i<nbColumns; i++)
+                for (int i = 1; i < nbColumns; i++)
                 {
-                 columnsMerged.Add(new Block { Id = n, Entry = row.Entry + separator + allColums[i][n].Entry });
+                    columnsMerged[0].Add(new Block { Id = n, Entry = row.Entry + separator + allColums[i][n].Entry });
 
                 }
                 n++;
             }
-
-
             return columnsMerged;
         }
     }

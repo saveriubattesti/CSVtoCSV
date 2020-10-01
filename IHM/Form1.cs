@@ -15,6 +15,7 @@ namespace IHM
 {
     public partial class Form1 : Form
     {
+        private List<List<Block>> listOfAllColumns;
         public Form1()
         {
             InitializeComponent();
@@ -71,10 +72,11 @@ namespace IHM
                 {
                     listView_srcCSV.Items.Add(el.Entry);
                 }
+                this.listOfAllColumns = source.MakeColunms(CSVfile, listeEntry);
 
             }
 
-            
+
         }
 
         private void saveCSVDest_Click(object sender, EventArgs e)
@@ -82,17 +84,9 @@ namespace IHM
             string user = Environment.UserName;
             saveCSVDialog.InitialDirectory = "C:\\Users\\" + user + "\\Source\\Repos\\CSVtoCSV\\IHM\\Output";
 
-            var listBlocks = new List<Block>();
-            foreach(ListViewItem item in listView_destCSV.Items)
-            {
-                listBlocks.Add(new Block()
-                {
-                    Id = item.Index,
-                    Entry = item.Text
-                });
-            }
             
-            String dataNewCSV = Destination.ToMatrix(listBlocks);
+            
+            String dataNewCSV = Destination.generateCSV(listOfAllColumns);
 
             if (saveCSVDialog.ShowDialog() == DialogResult.OK)
             {
@@ -110,7 +104,7 @@ namespace IHM
 
         private void comboBox_functoid_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboBox_functoid.SelectedItem == "Merge")
+            if ( comboBox_functoid.SelectedItem == "Merge")
             {
                 mergeBox.Visible = true;
                 splitBox.Visible = false;
@@ -120,41 +114,31 @@ namespace IHM
                 mergeBox.Visible = false;
                 splitBox.Visible = true;
             }
-            if (comboBox_functoid.SelectedItem == "Transferer")
-            {
-                mergeBox.Visible = false;
-                splitBox.Visible = false;
 
-                addItemSortie(listView_srcCSV.SelectedItems[0].Text);
-            }
         }
 
         private void merge_button_Click(object sender, EventArgs e)
         {
             var merge = new Merge();
 
-            List<Block> listeEntre = new List<Block>();
-
+            List<Int32> idColumsShouldBeMerged = new List<Int32>();
             var car = carMerge.Text;
-
             foreach (ListViewItem item in listView_srcCSV.SelectedItems)
             {
-                listeEntre.Add(new Block()
-                {
-                    Id = 1,
-                    Entry = item.Text
-                });
-
-
+  
+                idColumsShouldBeMerged.Add(item.Index);
             }
 
-            var dic = new Dictionary<string, string>();
-
-            dic["mergeChar"] = car;
-
-            var sortie = merge.CreateBlock(listeEntre, dic);
-
-            addItemSortie(sortie[0].Entry);
+            var sortie = merge.CreateBlock(listOfAllColumns, idColumsShouldBeMerged, car.ToCharArray()[0]);
+            listOfAllColumns.Add(sortie[0]);
+            for (var i = idColumsShouldBeMerged.Count-1; i >= 0; i--)
+            {
+                listOfAllColumns.RemoveAt(idColumsShouldBeMerged[i]);
+                listView_srcCSV.Items.RemoveAt(i);
+                    
+            }
+            listView_srcCSV.Items.Add(sortie[0][0].Entry);
+            addItemSortie(sortie[0][0].Entry);
 
         }
 
@@ -167,34 +151,32 @@ namespace IHM
         {
             var split = new Split();
 
-            List<Block> listeEntre = new List<Block>();
-
+            List<Int32> idColumsShouldBeSplit= new List<Int32>();
             var car = carSep.Text;
-            int nbSort;
-            Int32.TryParse(nbSortie.Text, out nbSort);
 
             foreach (ListViewItem item in listView_srcCSV.SelectedItems)
             {
-                listeEntre.Add(new Block()
-                {
-                    Id = 1,
-                    Entry = item.Text
-                });
-
+    
+                idColumsShouldBeSplit.Add(item.Index);
 
             }
 
-            var dic = new Dictionary<string, string>();
+            var sortie = split.CreateBlock(listOfAllColumns, idColumsShouldBeSplit, car.ToCharArray()[0]);
 
-            dic["splitChar"] = car;
-
-            var sortie = split.CreateBlock(listeEntre, dic, nbSort);
-
-            foreach (Block res in sortie)
+            for (var i = idColumsShouldBeSplit.Count - 1; i >= 0; i--)
             {
-                addItemSortie(res.Entry);
-                Console.WriteLine(res.Entry);
+                listOfAllColumns.RemoveAt(idColumsShouldBeSplit[i]);
             }
+            foreach (List<Block> res in sortie)
+            {
+                listOfAllColumns.Add(res);
+                addItemSortie(res[0].Entry);
+                listView_srcCSV.Items.Add(res[0].Entry);
+            }
+
+            
         }
+
+
     }
 }

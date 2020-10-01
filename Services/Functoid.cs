@@ -9,6 +9,6 @@ namespace Services
 {
     public abstract class Functoid
     {
-        public abstract List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<String, String> parameters, Int32 nbOfOutputBlocks);
+        public abstract List<List<Block>> CreateBlock(List<List<Block>> columns, List<Int32> idColumnsShouldBeChange, char separator);
     }
 }

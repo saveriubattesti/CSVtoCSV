@@ -9,48 +9,53 @@ namespace Services
 {
     public class Split : Functoid
     {
-        public override List<Block> CreateBlock(List<Block> entryBlocks, Dictionary<string, string> parameters, int nbOfOutputBlocks)
+
+        public override List<List<Block>> CreateBlock(List<List<Block>> columns, List<int> idColumnsShouldBeChange, char separator)
         {
-            Char[] splittingChar = null;
-            List<Block> blockReturn = new List<Block>();
-
-            foreach (KeyValuePair<String, String> key in parameters)
+            List<List<Block>> columnsSplitted = new List<List<Block>>();
+            List<List<Block>> allColums = new List<List<Block>>();
+            foreach (Int32 element in idColumnsShouldBeChange)
             {
-                if (key.Key == "splitChar")
-                {
-                    splittingChar = key.Value.ToCharArray();
-                    break;
-                }
+                allColums.Add(columns[element]);
             }
+            var nbColumns = idColumnsShouldBeChange.Count();
+            var idColumn = idColumnsShouldBeChange[0];
+            var n = 0;
 
-            if (splittingChar != null)
+            foreach (Block row in allColums[0])
             {
-                int nbNewBlock = 0;
-                foreach (Block block in entryBlocks)
+                if (n == 0)
                 {
-                    int i;
-                    String[] result = block.Entry.Split(splittingChar);
-                    for (i = 0; i < result.Length; i++)
-                    {
-                        blockReturn.Add(new Block() { Id = 100 + nbNewBlock, Entry = result[i] });
-                        nbNewBlock++;
-                        nbOfOutputBlocks--;
-                        if (nbOfOutputBlocks <= 0) break;
-                    }
-                    if (nbOfOutputBlocks <= 0) break;
+                    n++;
+                    continue;
                 }
-
-                if (nbOfOutputBlocks > 0)
+                String[] rowSplitted = row.Entry.Split(separator);
+                if (n == 1)
                 {
-                    for (int i = 0; i < nbOfOutputBlocks; i++)
+                    for (int i = 0; i < rowSplitted.Length; i++)
                     {
-                        blockReturn.Add(new Block() { Id = 100 + nbNewBlock, Entry = " " });
-                        nbNewBlock++;
+                        columnsSplitted.Add(new List<Block>());
+
                     }
                 }
+                for (int i = 0; i < rowSplitted.Length; i++)
+                {
+
+                    columnsSplitted[i].Add(new Block { Id = n, Entry = rowSplitted[i] });
+
+                }
+                n++;
+                Array.Clear(rowSplitted, 0, rowSplitted.Length);
             }
 
-            return blockReturn;
+            for (int i = 0; i < columnsSplitted.Count(); i++)
+            {
+
+                columnsSplitted[i].Insert(0, new Block { Id = n, Entry = "split" + i });
+
+            }
+
+            return columnsSplitted;
         }
     }
 }

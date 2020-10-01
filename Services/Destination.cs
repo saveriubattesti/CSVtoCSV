@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataContracts;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Globalization;
@@ -11,35 +12,24 @@ namespace Services
 {
     public static class Destination
     {
-        public static String ToMatrix(List<DataContracts.Block> blocks)
+       
+        public static String generateCSV(List<List<Block>> columns)
         {
-            //var matrix = new String[10,10];
-
-            var matrix = "";
-            var old = 1;
-
-            foreach (DataContracts.Block b in blocks)
+            var stringCSV = "";
+            var nbRow = columns[0].Count;
+            for(int i = 0; i<nbRow; i++)
             {
-                
-                if (b.Id == 1 && matrix !="") { matrix += "\r\n"; }
-
-
-                for (int i = old; i < b.Id; i++)
+                foreach(List<Block> column in columns)
                 {
-                    //if (b.Id - i != old && b.Id != 1) { matrix += ";"; }
-                    if (b.Id - i != 1 && b.Id != 1) { matrix += ";"; }
+                    stringCSV += column[i].Entry + ";";
                 }
 
-
-                matrix += b.Entry + ";";
-
-
-
-                old = b.Id;
+                    stringCSV += "\n";
+                
             }
 
+            return stringCSV;
 
-            return matrix;
         }
 
     }

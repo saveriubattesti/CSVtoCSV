@@ -30,14 +30,14 @@ namespace Services
                     lBlock.Add(new Block { Id = counterId, Entry = title });
                     counterId++;
                 }
-                MakeColunms(link);
                 return lBlock;
             }
 
 
         }
 
-        public List<List<DataContracts.Block>> MakeColunms(String link)
+        //Retourne la liste des colonnes du csv
+        public List<List<DataContracts.Block>> MakeColunms(String link, List<Block> headers)
         {
             using (var reader = new StreamReader(link))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -45,13 +45,18 @@ namespace Services
                 csv.Configuration.Delimiter = ";";
                 csv.Read();
                 csv.ReadHeader();
-                var nbCollumns = csv.Context.HeaderRecord.Length;
+                var nbColumns = headers.Count();
                 String value;
-                //var collumnId = 0;
-                var nb = 1;
-                List<List<Block>> collumns = new List<List<Block>>();
+                var nb = nbColumns+1;
+                List<List<Block>> columns = new List<List<Block>>();
                 List<Block> listElement = new List<Block>();
 
+                Int32 k = 1;
+                foreach (Block title in headers)
+                {
+                    listElement.Add(new Block { Id = k, Entry = title.Entry });
+                    k++;
+                }
                 while (csv.Read())
                 {
                     for (int i = 0; csv.TryGetField<string>(i, out value); i++)
@@ -60,28 +65,30 @@ namespace Services
                             nb++;
                     }
                 }
+              
                 var j = 1;
-
-                while (nbCollumns != 0)
+                var modulo = nbColumns;
+                while (nbColumns != 0)
                 {
                     
-                    List<Block> collumn = new List<Block>();
+                    List<Block> column = new List<Block>();
                     foreach (Block el in listElement)
                     {
-                        if(el.Id%4 == j)
+                        if(el.Id%modulo == j )
                         {
-                            collumn.Add(el);
+                            column.Add(el);
                         }
                         
                     }
                     j++;
-                    collumns.Add(collumn);
-                    nbCollumns--;
+                    if (j == modulo) {
+                        j = 0;
+                    }      
+                    columns.Add(column);
+                    nbColumns--;
                 }
 
-
-                Merge.MergeBis(collumns, new int[] { 0, 1 }, '-');
-                return collumns;
+                return columns;
 
             }
         }
